@@ -39,6 +39,12 @@ const ATMOSPHERE = {
   /** выбор стороны: развилка, туман */
   factionCrossroads:
     "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1920&q=80",
+  /** наведение: сводная группа — тактика, ночной спецназ (USSOCOM) */
+  usFactionHover:
+    "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=1920&q=80",
+  /** наведение: линия ФСБ — оперативники, закрытая зона */
+  fsbFactionHover:
+    "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=1920&q=80",
   /** США вопрос 1: гражданство, документы */
   usCitizenship:
     "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1920&q=80",
@@ -246,6 +252,26 @@ function renderFaction() {
 
   grid.appendChild(usCard);
   grid.appendChild(fsbCard);
+
+  const resetFactionBg = () =>
+    setBackground(ATMOSPHERE.factionCrossroads, true);
+  usCard.addEventListener("mouseenter", () =>
+    setBackground(ATMOSPHERE.usFactionHover, true)
+  );
+  fsbCard.addEventListener("mouseenter", () =>
+    setBackground(ATMOSPHERE.fsbFactionHover, true)
+  );
+  grid.addEventListener("mouseleave", resetFactionBg);
+
+  grid.addEventListener("focusin", (e) => {
+    if (e.target === usCard) setBackground(ATMOSPHERE.usFactionHover, true);
+    if (e.target === fsbCard) setBackground(ATMOSPHERE.fsbFactionHover, true);
+  });
+  grid.addEventListener("focusout", () => {
+    requestAnimationFrame(() => {
+      if (!grid.contains(document.activeElement)) resetFactionBg();
+    });
+  });
 
   const actions = el("div", "actions");
   const back = el("button", "secondary", "К началу истории");
