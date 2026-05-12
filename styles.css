@@ -43,6 +43,7 @@ body {
   background-color: #0a0c10;
   background-size: cover;
   background-position: center;
+  filter: brightness(0.68) contrast(1.12) saturate(0.82);
   transition: opacity 1.1s ease, filter 1.1s ease;
 }
 
