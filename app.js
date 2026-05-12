@@ -15,15 +15,12 @@ const ATMOSPHERE = {
   secretFoodLab: "assets/bg/slide-02-secret-lab.png",
   /** s3: полевой рацион «Пряники» */
   darkSpicesAlchemy: "assets/bg/slide-03-pryaniki.png",
-  /** s4: срыв, ярость, военная хроника */
-  rageAndSmoke:
-    "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1920&q=80",
-  /** s5: закрытый объект, архив, охрана */
-  abandonedBunkerNight:
-    "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1920&q=80",
-  /** s6: след прикрыт, бумаги и наследие MK-ULTRA */
-  burningSecrets:
-    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1920&q=80",
+  /** s4: потеря контроля */
+  lostControl: "assets/bg/slide-04-lost-control.png",
+  /** s5: закрытый объект — руки за решёткой */
+  abandonedBunkerNight: "assets/bg/slide-05-1964-closure.png",
+  /** s6: гриф MK-ULTRA — толпа, «наблюдатели» */
+  burningSecrets: "assets/bg/slide-06-mk-ultra.png",
   /** s7: лайнер, биозагроза, небо перед катастрофой */
   planeStormOmen:
     "https://images.unsplash.com/photo-1474302770737-173ee21bab63?auto=format&fit=crop&w=1920&q=80",
@@ -36,12 +33,10 @@ const ATMOSPHERE = {
   /** выбор стороны: развилка, туман */
   factionCrossroads:
     "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1920&q=80",
-  /** наведение: сводная группа — тактика, ночной спецназ (USSOCOM) */
-  usFactionHover:
-    "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=1920&q=80",
-  /** наведение: линия ФСБ — оперативники, закрытая зона */
-  fsbFactionHover:
-    "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?auto=format&fit=crop&w=1920&q=80",
+  /** наведение: сводная группа (бывшие США) */
+  usFactionHover: "assets/bg/faction-hover-us.png",
+  /** наведение: линия ФСБ */
+  fsbFactionHover: "assets/bg/faction-hover-fsb.png",
   /** США вопрос 1: гражданство, документы */
   usCitizenship:
     "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=1920&q=80",
@@ -83,19 +78,24 @@ const SLIDES = [
   },
   {
     id: "s4",
-    bg: ATMOSPHERE.rageAndSmoke,
+    bg: ATMOSPHERE.lostControl,
+    /** Исходное фото очень тёмное — чуть ярче; без оверлея ::after, иначе картинку не видно */
+    bgLift: true,
+    noBgOverlay: true,
     title: "Потеря контроля",
     html: `<p>Испытания проводились в строжайшей тайне. Солдаты, отведавшие «полевой рацион Пряник-7», демонстрировали результаты, которые не могли объяснить даже сами разработчики.</p><p>Однако проект начал выходить из-под контроля: апатия, неконтролируемая ярость. Один сержант, отведавший «Пряник-7» перед учениями, якобы голыми руками разорвал пулемётное гнездо… а потом не смог вспомнить своего имени.</p>`,
   },
   {
     id: "s5",
     bg: ATMOSPHERE.abandonedBunkerNight,
+    bgLift: true,
     title: "1964. Закрытие",
     html: `<p>В <strong>1964 году</strong>, после нескольких смертей и одного случая «необъяснимого каннибализма» в последнем закрытом лагере Санкт-Петербурга, проект официально свернули. Все образцы и документацию уничтожили — как казалось.</p><p>И иногда, в холодные ночи, те, кто охраняет объект, чувствуют слабый запах мёда и корицы и слышат что-то из лаборатории… что-то, что уже мало похоже на человека.</p>`,
   },
   {
     id: "s6",
     bg: ATMOSPHERE.burningSecrets,
+    bgLift: true,
     title: "Под грифом MK-ULTRA",
     html: `<p>Официально проект «Пряники» никогда не существовал. Все документы были уничтожены или надёжно похоронены под грифом «MK-ULTRA».</p><p><em>Но те, кто пробовал их… до сих пор помнят вкус.</em></p>`,
   },
@@ -159,10 +159,13 @@ function el(tag, className, html) {
   return e;
 }
 
-function setBackground(url, strongVignette) {
+function setBackground(url, strongVignette, bgLift, noBgOverlay, noDim) {
   const bg = document.getElementById("bg");
   bg.style.backgroundImage = `url("${url}")`;
   bg.classList.toggle("vignette-strong", !!strongVignette);
+  bg.classList.toggle("bg-lift", !!bgLift);
+  bg.classList.toggle("no-bg-overlay", !!noBgOverlay);
+  bg.classList.toggle("bg-no-dim", !!noDim);
 }
 
 function setProgress(index, total) {
@@ -208,7 +211,8 @@ function renderStorySlide(index) {
   panel.appendChild(story);
   panel.appendChild(actions);
 
-  setBackground(slide.bg, true);
+  const plain = !!slide.noBgOverlay;
+  setBackground(slide.bg, !plain, !!slide.bgLift, plain);
   setProgress(index, SLIDES.length);
 }
 
@@ -252,17 +256,19 @@ function renderFaction() {
 
   const resetFactionBg = () =>
     setBackground(ATMOSPHERE.factionCrossroads, true);
+  /** Ховер-картинки: без градиента, виньетки и затемняющего filter на фото */
+  const hoverBg = (url) => setBackground(url, false, false, true, true);
   usCard.addEventListener("mouseenter", () =>
-    setBackground(ATMOSPHERE.usFactionHover, true)
+    hoverBg(ATMOSPHERE.usFactionHover)
   );
   fsbCard.addEventListener("mouseenter", () =>
-    setBackground(ATMOSPHERE.fsbFactionHover, true)
+    hoverBg(ATMOSPHERE.fsbFactionHover)
   );
   grid.addEventListener("mouseleave", resetFactionBg);
 
   grid.addEventListener("focusin", (e) => {
-    if (e.target === usCard) setBackground(ATMOSPHERE.usFactionHover, true);
-    if (e.target === fsbCard) setBackground(ATMOSPHERE.fsbFactionHover, true);
+    if (e.target === usCard) hoverBg(ATMOSPHERE.usFactionHover);
+    if (e.target === fsbCard) hoverBg(ATMOSPHERE.fsbFactionHover);
   });
   grid.addEventListener("focusout", () => {
     requestAnimationFrame(() => {
