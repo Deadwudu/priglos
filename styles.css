@@ -5,9 +5,8 @@
   --danger: #8b2942;
   --panel: rgba(8, 10, 14, 0.82);
   --border: rgba(201, 162, 39, 0.35);
-  --font-display: "Cormorant", "Times New Roman", serif;
-  --font-body: "Literata", "Georgia", serif;
-  --font-ui: "IBM Plex Sans", system-ui, sans-serif;
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-ui: "JetBrains Mono", "Consolas", monospace;
 }
 
 *,
@@ -23,14 +22,12 @@ body {
 }
 
 body {
-  font-family: var(--font-body);
-  font-size: clamp(0.9rem, 1.55vw, 1rem);
-  line-height: 1.68;
+  font-family: var(--font-ui);
+  font-size: clamp(0.85rem, 1.6vw, 0.95rem);
+  line-height: 1.65;
   color: var(--fg);
   background: #050608;
   overflow: hidden;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
 .app {
@@ -95,18 +92,16 @@ body {
 h1 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.28rem, 3vw, 1.72rem);
-  margin: 0 0 0.85rem;
-  letter-spacing: -0.012em;
+  font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.02em;
   color: var(--accent);
-  font-optical-sizing: auto;
 }
 
 .story {
-  font-family: var(--font-body);
-  font-weight: 400;
-  font-size: clamp(1rem, 2.15vw, 1.14rem);
-  line-height: 1.62;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  line-height: 1.55;
   margin: 0;
 }
 
@@ -127,10 +122,9 @@ h1 {
 
 button {
   font-family: var(--font-ui);
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  text-transform: none;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   padding: 0.75rem 1.35rem;
   border: 1px solid var(--border);
   background: rgba(201, 162, 39, 0.12);
@@ -212,10 +206,9 @@ button.danger-outline:hover {
 
 .choice-card span {
   display: block;
-  font-family: var(--font-body);
-  font-size: 0.84rem;
+  font-size: 0.78rem;
   color: var(--fg-muted);
-  line-height: 1.5;
+  line-height: 1.45;
   text-transform: none;
   letter-spacing: 0;
 }
