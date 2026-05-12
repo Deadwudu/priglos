@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Приглашение</title>
+  <title>Проект «Пряники» — приглашение</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <p>Заготовка страницы приглашения — контент добавим по сюжету.</p>
-  </main>
+  <div class="app">
+    <div id="progress" class="progress" style="transform: scaleX(0)" aria-hidden="true"></div>
+    <div id="bg" class="bg" role="presentation"></div>
+    <div class="layer">
+      <div id="panel" class="panel"></div>
+    </div>
+  </div>
+  <p class="sr-only">Интерактивная история: используйте кнопки на экране; на слайдах истории можно нажать Enter для «Далее».</p>
+  <script src="app.js"></script>
 </body>
 </html>
