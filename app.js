@@ -3,6 +3,8 @@
  * Фоны: атмосферные фото (Unsplash), затемнённые через CSS.
  */
 
+const TELEGRAM_CHANNEL_URL = "https://t.me/+0lwQ8GBizQs3NTUy";
+
 const BACKGROUNDS = {
   archive:
     "https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=1920&q=75",
@@ -142,7 +144,7 @@ function renderStorySlide(index) {
   const story = el("div", "story", slide.html);
 
   const actions = el("div", "actions");
-  const nextBtn = el("button", null, index < SLIDES.length - 1 ? "Далее" : "К выбору стороны");
+  const nextBtn = el("button", null, "Далее");
   nextBtn.type = "button";
   nextBtn.addEventListener("click", () => {
     if (index < SLIDES.length - 1) {
@@ -337,16 +339,13 @@ function renderFinale() {
   );
 
   const actions = el("div", "actions");
-  const again = el("button", "secondary", "Пройти снова");
-  again.type = "button";
-  again.addEventListener("click", () => {
-    state.phase = "story";
-    state.slideIndex = 0;
-    state.questionIndex = 0;
-    state.faction = null;
-    render();
-  });
-  actions.appendChild(again);
+  const channel = document.createElement("a");
+  channel.className = "channel-link";
+  channel.href = TELEGRAM_CHANNEL_URL;
+  channel.target = "_blank";
+  channel.rel = "noopener noreferrer";
+  channel.textContent = "Переключиться на закрытый канал";
+  actions.appendChild(channel);
 
   p.appendChild(title);
   p.appendChild(story);
