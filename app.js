@@ -140,11 +140,6 @@ function renderStorySlide(index) {
 
   const title = el("h1", null, slide.title);
   const story = el("div", "story", slide.html);
-  const meta = el(
-    "div",
-    "meta",
-    `Фрагмент ${index + 1} / ${SLIDES.length} · архив`
-  );
 
   const actions = el("div", "actions");
   const nextBtn = el("button", null, index < SLIDES.length - 1 ? "Далее" : "К выбору стороны");
@@ -172,7 +167,6 @@ function renderStorySlide(index) {
 
   panel.appendChild(title);
   panel.appendChild(story);
-  panel.appendChild(meta);
   panel.appendChild(actions);
 
   setBackground(slide.bg, index >= 4 && index <= 6);
@@ -244,18 +238,8 @@ function renderQuestion() {
   panel.innerHTML = "";
   panel.className = "panel fade-enter";
 
-  const factionLabel =
-    state.faction === "us"
-      ? "Брифинг · бывшие США"
-      : "Брифинг · линия ФСБ";
-
   const title = el("h1", null, "Допуск к операции");
   const story = el("div", "story", `<p>${item.q}</p>`);
-  const meta = el(
-    "div",
-    "meta",
-    `${factionLabel} · вопрос ${idx + 1} из ${list.length}`
-  );
 
   const actions = el("div", "actions");
   const yes = el("button", null, "Да");
@@ -284,7 +268,6 @@ function renderQuestion() {
 
   panel.appendChild(title);
   panel.appendChild(story);
-  panel.appendChild(meta);
   panel.appendChild(actions);
 
   const bgKey =
@@ -346,18 +329,12 @@ function renderFinale() {
   p.innerHTML = "";
   p.className = "panel fade-enter";
 
-  const tag =
-    state.faction === "us"
-      ? "Маршрут согласован · без гражданства и без формы"
-      : "Маршрут согласован · без жетона и без парадного коридора";
-
   const title = el("h1", null, "Лаборатория ждёт");
   const story = el(
     "div",
     "story",
     `<p>Допуск подтверждён. Дальнейшие координаты и время будут переданы по закрытому каналу.</p><p>Две группы сходятся к одним и тем же стенам: запах мёда и корицы ещё не раздует тревогу — но то, что спит за дверью, уже помнит <strong>вкус Пряников</strong>.</p>`
   );
-  const meta = el("div", "meta", `${tag} · конец брифинга`);
 
   const actions = el("div", "actions");
   const again = el("button", "secondary", "Пройти снова");
@@ -373,7 +350,6 @@ function renderFinale() {
 
   p.appendChild(title);
   p.appendChild(story);
-  p.appendChild(meta);
   p.appendChild(actions);
 
   setBackground(BACKGROUNDS.lab, true);
