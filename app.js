@@ -13,9 +13,8 @@ const ATMOSPHERE = {
   mkUltraEra: "assets/bg/slide-01-mk-ultra.png",
   /** s2: секретные испытания под видом «науки» */
   secretFoodLab: "assets/bg/slide-02-secret-lab.png",
-  /** s3: пряности, состав рациона — без «сладкой» рекламы */
-  darkSpicesAlchemy:
-    "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1920&q=80",
+  /** s3: полевой рацион «Пряники» */
+  darkSpicesAlchemy: "assets/bg/slide-03-pryaniki.png",
   /** s4: срыв, ярость, военная хроника */
   rageAndSmoke:
     "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1920&q=80",
