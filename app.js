@@ -11,9 +11,8 @@ const TELEGRAM_CHANNEL_URL = "https://t.me/+0lwQ8GBizQs3NTUy";
 const ATMOSPHERE = {
   /** s1: закрытый архив, гриф секретности */
   mkUltraEra: "assets/bg/slide-01-mk-ultra.png",
-  /** s2: секретная «пищевая» лаборатория */
-  secretFoodLab:
-    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80",
+  /** s2: секретные испытания под видом «науки» */
+  secretFoodLab: "assets/bg/slide-02-secret-lab.png",
   /** s3: пряности, состав рациона — без «сладкой» рекламы */
   darkSpicesAlchemy:
     "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1920&q=80",
