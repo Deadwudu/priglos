@@ -6,12 +6,11 @@
 const TELEGRAM_CHANNEL_URL = "https://t.me/+0lwQ8GBizQs3NTUy";
 
 /**
- * Отдельный мрачный фон под смысл каждого экрана (Unsplash, тёмные кадры).
+ * Фоны: локальные файлы в assets/bg (история) и ссылки Unsplash (остальное — пока).
  */
 const ATMOSPHERE = {
-  /** s1: холодная война, НКВ/ЦРУ, закрытый кабинет */
-  mkUltraEra:
-    "https://images.unsplash.com/photo-1526243741027-444d633d7365?auto=format&fit=crop&w=1920&q=80",
+  /** s1: закрытый архив, гриф секретности */
+  mkUltraEra: "assets/bg/slide-01-mk-ultra.png",
   /** s2: секретная «пищевая» лаборатория */
   secretFoodLab:
     "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80",
